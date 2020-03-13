@@ -4,13 +4,13 @@ abstract class Resept {
     protected int id;
     protected Legemiddel legemiddel;
     protected Lege utskrivendeLege;
-    protected int pasientId;
+    protected Pasient pasient;
     protected int reit;
 
-    public Resept(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId, int reit) {
+    public Resept(Legemiddel legemiddel, Lege utskrivendeLege, Pasient pasient, int reit) {
         this.legemiddel = legemiddel;
         this.utskrivendeLege = utskrivendeLege;
-        this.pasientId = pasientId;
+        this.pasient = pasient;
         this.reit = reit;
 
         this.id = total;
@@ -30,8 +30,8 @@ abstract class Resept {
         return utskrivendeLege;
     }
 
-    public int hentPasientId() {
-        return pasientId;
+    public Pasient hentPasientId() {
+        return pasient;
     }
 
     public int hentReit() {

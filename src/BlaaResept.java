@@ -1,5 +1,5 @@
-public class BResept extends Resept {
-    public BResept(Legemiddel legemiddel, Lege utskrivendeLege, Pasient pasient, int reit) {
+public class BlaaResept extends Resept {
+    public BlaaResept(Legemiddel legemiddel, Lege utskrivendeLege, Pasient pasient, int reit) {
         super(legemiddel, utskrivendeLege, pasient, reit);
     }
 

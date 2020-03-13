@@ -1,6 +1,6 @@
 import static java.lang.Math.max;
 
-public class PResept extends HResept {
+public class PResept extends HvitResept {
     public PResept(Legemiddel legemiddel, Lege utskrivendeLege, Pasient pasient) {
         super(legemiddel, utskrivendeLege, pasient, 3);
     }

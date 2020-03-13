@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class Lenkeliste<T> implements Liste<T> {
 
     Node<T> start;
@@ -142,5 +144,10 @@ public class Lenkeliste<T> implements Liste<T> {
         }
 
         return node.hentData();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LenkelisteIterator<>(this);
     }
 }

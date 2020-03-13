@@ -1,6 +1,6 @@
 public class MResept extends HResept {
-    public MResept(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId, int reit) {
-        super(legemiddel, utskrivendeLege, pasientId, reit);
+    public MResept(Legemiddel legemiddel, Lege utskrivendeLege, Pasient pasient, int reit) {
+        super(legemiddel, utskrivendeLege, pasient, reit);
     }
 
     @Override
@@ -11,7 +11,7 @@ public class MResept extends HResept {
 
     @Override
     public String toString() {
-        return String.format("Militaerresept (ID: %s) for: %s, skrevet ut av doktor %s, pasientid: %s, reit: %s", id, legemiddel.hentNavn(), utskrivendeLege.hentNavn(), pasientId, reit);
+        return String.format("Militaerresept (ID: %s) for: %s, skrevet ut av doktor %s, pasient: %s, reit: %s", id, legemiddel.hentNavn(), utskrivendeLege.hentNavn(), pasient, reit);
     }
 
 }

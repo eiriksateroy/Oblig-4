@@ -5,7 +5,7 @@ public class Pasient {
 
 
     private String foedselsnr;
-    private Stabel<Resept> resepter = new Stabel<>();
+    private Stabel<Resept> resepter;
     private static int counter;
     private int id;
 
@@ -13,6 +13,7 @@ public class Pasient {
         this.navn = navn;
         this.foedselsnr = foedselsnr;
         this.id = counter++;
+        resepter = new Stabel<>();
     }
 
     public int hentId() {

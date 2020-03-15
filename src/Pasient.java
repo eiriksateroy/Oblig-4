@@ -5,7 +5,7 @@ public class Pasient {
 
 
     private String foedselsnr;
-    private Stabel<Resept> resepter;
+    private Stabel<Resept> resepter = new Stabel<>();
     private static int counter;
     private int id;
 

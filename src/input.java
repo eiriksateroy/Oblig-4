@@ -1,6 +1,10 @@
 import java.util.Scanner;
 class input {
     public static void main(String[] args) {
+        Lenkeliste<Pasient> pasientListe = new Lenkeliste<>();
+        Lenkeliste<Lege> legeListe = new Lenkeliste<>();
+        Lenkeliste<Legemiddel> legemiddelListe = new Lenkeliste<>();
+
         Scanner input = new Scanner(System.in);
         String hovedmeny = "\nHovedmeny: \n0: Skriv ut elementer" //Lag 1
         + "\n1: Legge til nye elementer \n2: Bruk resept \n3: Skriv ut statistikk"
@@ -22,7 +26,7 @@ class input {
                 + "\n2: Resept \n3: Legemiddel");
                 int svar2 = input.nextInt();
 
-                if (svar2 == 0) {       //Lag 2.2 - Lege
+                if (svar2 == 0) {       //Lag 2.2 - Lege - Ferdig
                     input.nextLine(); //Maa ha med dette for at String input skal leses etter Int input
                     System.out.println("\nNavn paa legen: ");
                     String navn = input.nextLine();
@@ -31,21 +35,19 @@ class input {
 
                     if (kontrollnummer == 0) {
                         Lege lege = new Lege(navn);
-                        //Og ogsaa legge til legen i lista
+                        legeListe.leggTil(lege);
                     }
 
                     else {
                         Lege spesLege = new Spesialister(navn, kontrollnummer);
-                        //Og ogsaa legge til legen i lista
+                        legeListe.leggTil(spesLege);
                     }
-
-                    System.out.println("Dette legger til en lege"); //Midlertidig
 
                     System.out.println(hovedmeny); //Bolk for aa loope tilbake til hovedmenyen
                     svar = input.nextInt();
                 }
 
-                else if (svar2 == 1) {  //Lag 2.2 - Pasient
+                else if (svar2 == 1) {  //Lag 2.2 - Pasient - Ferdig
                     input.nextLine();
                     System.out.println("\nNavn paa pasient: ");
                     String navn = input.nextLine();
@@ -53,24 +55,22 @@ class input {
                     String fodselsnummer = input.nextLine();
 
                     Pasient pasient = new Pasient(navn, fodselsnummer);
-                    //Og ogsaa legge til pasienten i lista
-
-                    System.out.println("Dette legger til en Pasient");//Midlertidig
+                    pasientListe.leggTil(pasient);
 
                     System.out.println(hovedmeny); //Bolk for aa loope tilbake til hovedmenyen
                     svar = input.nextInt();
                 }
 
                 else if (svar2 == 2) {  //Lag 2.2
-                    System.out.println("Hvilken resept onsker du aa skrive ut? \n0: Hvit resept"
+                    System.out.println("\nHvilken type resept onsker du aa skrive ut? \n0: Hvit resept"
                     + "\n1: P-resept \n2: Militaer resept \n3: Blaa resept");
                     int type = input.nextInt();
-                    System.out.println("Hvilken lege skal skrive ut denne resepten?");
+                    System.out.println("\nHvilken lege skal skrive ut denne resepten?");
                     //Faar opp en liste av alle legene registrert i systemet
                     int valgtLege = input.nextInt();
                     //Finner valgt lege i lista og,
                     Lege lege = null;
-                    System.out.println("Hvilket legemiddel skal skrives ut?");
+                    System.out.println("\nHvilket legemiddel skal skrives ut?");
                     //Faar opp en liste av alle legemidlene registrert i systemet
                     int valgtLegemiddel = input.nextInt();
                     //Kjorer en if sjekk om legen har lov til aa skrive ut legemidlet
@@ -78,7 +78,7 @@ class input {
                     //Om lovlig, fortsetter under
                         //Finner valgt legemiddel i lista og,
                         Legemiddel legemiddel = null;
-                    System.out.println("Hvilken pasient skal resepten registreres til?");
+                    System.out.println("\nHvilken pasient skal resepten registreres til?");
                     //Faar opp en liste av alle registrerte pasienter i systemet
                     int valgtPasient = input.nextInt();
                     //Finner valgt pasient og,
@@ -86,7 +86,7 @@ class input {
 
                     int reit;
                     if (type != 1) {
-                        System.out.println("Hvor mange bruk har denne resepten?");
+                        System.out.println("\nHvor mange bruk har denne resepten?");
                         reit = input.nextInt();
                     }
                     else {
@@ -116,7 +116,7 @@ class input {
                     svar = input.nextInt();
                 }
 
-                else if (svar2 == 3) {  //Lag 2.2 - Legemiddel
+                else if (svar2 == 3) {  //Lag 2.2 - Legemiddel - Ferdig
                     input.nextLine();
                     System.out.println("\nHvilken type legemiddel? \n0: Vanlig"
                     + "\n1: Narkotisk \n2: Vanedannende");
@@ -133,19 +133,18 @@ class input {
 
                     if (type == 0) {
                         Legemiddel vanlig = new Vanlig(navn, pris, virkestoffmengde);
-                        //Og ogsaa legger til legemidlet i lista
+                        legemiddelListe.leggTil(vanlig);
                     }
 
                     else if (type == 1) {
                         Legemiddel narkotisk = new Narkotisk(navn, pris, virkestoffmengde, styrke);
-                        //Og ogsaa legger til legemidlet i lista
+                        legemiddelListe.leggTil(narkotisk);
                     }
 
                     else if (type == 2) {
                         Legemiddel vanedannende = new Vanedannende(navn, pris, virkestoffmengde, styrke);
-                        //Og ogsaa legger til legemidlet i lista
+                        legemiddelListe.leggTil(vanedannende);
                     }
-                    System.out.println("Dette legger til ett legemiddel");//Midlertidig
 
                     System.out.println(hovedmeny); //Bolk for aa loope tilbake til hovedmenyen
                     svar = input.nextInt();
@@ -161,6 +160,7 @@ class input {
 
             else if (svar == 2) { // Lag 2
                 System.out.println("\nDette er funksjonen for aa bruke resepter\n");
+                //Skriver ut alle reseseptene i systemet
 
                 System.out.println(hovedmeny); //Bolk for aa loope tilbake til hovedmenyen
                 svar = input.nextInt();
